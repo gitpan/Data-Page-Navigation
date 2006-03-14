@@ -3,7 +3,7 @@ package Data::Page::Navigation;
 use strict;
 use warnings;
 use Data::Page;
-our $VERSION='0.02';
+our $VERSION='0.03';
 
 package Data::Page;
 
@@ -11,10 +11,11 @@ __PACKAGE__->mk_accessors(qw/pages_per_navigation/);
 
 sub pages_in_navigation(){
     my $self = shift;
-    
+
+    my $last_page = $self->last_page;
     my $pages_per_navigation = shift || $self->pages_per_navigation || 10;
-    return ($self->first_page..$self->last_page) if $pages_per_navigation >= $self->last_page;
-    
+    return ($self->first_page..$last_page) if $pages_per_navigation >= $last_page;
+
     my $prev = $self->current_page - 1;
     my $next = $self->current_page + 1;
     my @ret = ($self->current_page);
@@ -24,7 +25,7 @@ sub pages_in_navigation(){
             unshift(@ret,$prev) if $self->first_page <= $prev;
             --$prev;
         }else{
-            push(@ret,$next) if $self->last_page >= $next;
+            push(@ret,$next) if $last_page >= $next;
             $next++;
         }
         $i++;
@@ -32,6 +33,17 @@ sub pages_in_navigation(){
     return @ret;
 }
 
+sub first_navigation_page {
+    my $self = shift;
+    my @pages = $self->pages_in_navigation;
+    shift @pages;
+}
+
+sub last_navigation_page {
+    my $self = shift;
+    my @pages = $self->pages_in_navigation;
+    pop @pages;
+}
 
 1;
 
@@ -57,8 +69,8 @@ Data::Page::Navigation - adds methods for page navigation to Data::Page
     );
     $pager->pages_per_navigation($pages_per_navigation);
     @list = $pager->pages_in_navigation($pages_per_navigation);
-    #@list = qw/1 2 3 4 5 6 7 8 9 10/;   
-    
+    #@list = qw/1 2 3 4 5 6 7 8 9 10/;
+
     $pager->current_page(9);
     @list = $pager->pages_in_navigation($pages_per_navigation);
     #@list = qw/5 6 7 8 9 10 11 12 13 14/;
@@ -80,9 +92,17 @@ Setting the number of page numbers displayed on one page. default is 10
 
 This method returns an array where page numbers of the number that you set with pages_per_navigation are included
 
+=head2 first_navigation_page
+
+Returns the first page in the list returned by pages_in_navigation().
+
+=head2 last_navigation_page
+
+Returns the last page in the list returned by pages_in_navigation().
+
 =head1 SEE ALSO
 
-L<Data::Page> 
+L<Data::Page>
 
 =head1 AUTHOR
 
