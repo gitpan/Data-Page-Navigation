@@ -1,11 +1,12 @@
 package Data::Page::Navigation;
-
 use strict;
 use warnings;
 use Data::Page;
-our $VERSION='0.03';
 
-package Data::Page;
+our $VERSION = '0.04';
+
+package 
+  Data::Page;
 
 __PACKAGE__->mk_accessors(qw/pages_per_navigation/);
 
@@ -45,14 +46,13 @@ sub last_navigation_page {
     pop @pages;
 }
 
+
 1;
-
-
 __END__
 
 =head1 NAME
 
-Data::Page::Navigation - adds methods for page navigation to Data::Page
+Data::Page::Navigation - adds methods for page navigation link to Data::Page
 
 =head1 SYNOPSIS
 
@@ -106,15 +106,11 @@ L<Data::Page>
 
 =head1 AUTHOR
 
-Masahiro Nagano, E<lt>kazeburo@gmail.comE<gt>
+Masahiro Nagano E<lt>kazeburo {at} gmail.comE<gt>
 
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2005 by Masahiro Nagano
+=head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
-
+it under the same terms as Perl itself.
 
 =cut

@@ -1,40 +1,27 @@
-Data-Page-Navigation version 0.03
-=================================
-
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+This is Perl module Data::Page::Navigation.
 
 INSTALLATION
 
-To install this module type the following:
+Data::Page::Navigation installation is straightforward. If your CPAN shell is set up,
+you should just be able to do
 
-   perl Makefile.PL
-   make
-   make test
-   make install
+    % cpan Data::Page::Navigation
 
-DEPENDENCIES
+Download it, unpack it, then build it as per the usual:
 
-This module requires these other modules and libraries:
+    % perl Makefile.PL
+    % make && make test
 
-  Data::Page
+Then install it:
 
-COPYRIGHT AND LICENCE
+    % make install
 
-Put the correct copyright and licence information here.
+DOCUMENTATION
 
-Copyright (C) 2005 by Masahiro Nagano
+Data::Page::Navigation documentation is available as in POD. So you can do:
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
+    % perldoc Data::Page::Navigation
 
+to read the documentation online with your favorite pager.
 
+Masahiro Nagano
