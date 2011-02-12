@@ -3,14 +3,14 @@ use strict;
 use warnings;
 use Data::Page;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 package 
   Data::Page;
 
 __PACKAGE__->mk_accessors(qw/pages_per_navigation/);
 
-sub pages_in_navigation(){
+sub pages_in_navigation {
     my $self = shift;
 
     my $last_page = $self->last_page;
@@ -31,7 +31,7 @@ sub pages_in_navigation(){
         }
         $i++;
     }
-    return @ret;
+    return wantarray ? @ret : \@ret;
 }
 
 sub first_navigation_page {
@@ -90,7 +90,7 @@ Setting the number of page numbers displayed on one page. default is 10
 
 =head2 pages_in_navigation([pages_per_navigation])
 
-This method returns an array where page numbers of the number that you set with pages_per_navigation are included
+This method returns an array (or array-ref in scalar context) where page numbers of the number that you set with pages_per_navigation are included.
 
 =head2 first_navigation_page
 
