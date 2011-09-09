@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Data::Page;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 package 
   Data::Page;
@@ -15,7 +15,8 @@ sub pages_in_navigation {
 
     my $last_page = $self->last_page;
     my $pages_per_navigation = shift || $self->pages_per_navigation || 10;
-    return ($self->first_page..$last_page) if $pages_per_navigation >= $last_page;
+    return wantarray ? ($self->first_page..$last_page) : [($self->first_page..$last_page)]
+        if $pages_per_navigation >= $last_page;
 
     my $prev = $self->current_page - 1;
     my $next = $self->current_page + 1;

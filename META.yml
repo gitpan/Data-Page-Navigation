@@ -23,4 +23,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/Data-Page-Navigation.git
-version: 0.05
+version: 0.06
